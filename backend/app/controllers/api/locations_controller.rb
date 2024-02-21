@@ -1,8 +1,8 @@
 class Api::LocationsController < ApplicationController
   def index
-  locations = Rails.cache.fetch('all_locations', expires_in: 1000.days) do
-    Location.all
-  end
+    locations = Rails.cache.fetch(Location.cache_key) do
+      Location.all.order(:name)
+    end
 
     render json: locations, status: :ok
   rescue StandardError => e

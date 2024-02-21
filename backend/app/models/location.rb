@@ -16,4 +16,10 @@ class Location < ApplicationRecord
     seattle: ['Seattle, Washington',  47.6062, -122.3321],
     los_angeles: ['Los Angeles, California',  34.0522, -118.2437]
   })
+
+  def self.cache_key
+    {
+      stat_record: Location.maximum(:updated_at)
+    }
+  end
 end
