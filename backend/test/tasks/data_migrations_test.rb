@@ -1,5 +1,5 @@
 require 'test_helper'
-require "rake"
+require 'rake'
 
 class DataMigrationsTest < ActiveSupport::TestCase
   setup do

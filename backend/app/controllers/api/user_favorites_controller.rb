@@ -1,5 +1,5 @@
 class Api::UserFavoritesController < ApplicationController
-  before_action :set_user!, only: [:index, :create, :destroy]
+  before_action :set_user!, only: %i[index create destroy]
 
   def index
     render json: user.user_favorites, status: :ok

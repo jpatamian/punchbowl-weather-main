@@ -1,22 +1,20 @@
 class Api::WeathersController < ApplicationController
-
   def show
     location = Location.find_by(slug: params[:location_id])
 
     if location.nil?
-      render json: { error: "Location not found" }, status: :not_found
+      render json: { error: 'Location not found' }, status: :not_found
       return
     end
 
     client = OpenWeather::Client.new
-    data = client.one_call(lat: location.latitude, lon: location.longitude, exclude: ['minutely', 'hourly', 'alerts'])
+    data = client.one_call(lat: location.latitude, lon: location.longitude, exclude: %w[minutely hourly alerts])
 
     render json: data, status: :ok
   rescue OpenWeather::Errors::Fault
-    logger.error "Error accessing OpenWeather API"
+    logger.error 'Error accessing OpenWeather API'
     head :bad_request
   end
-
 end
 
 __END__
