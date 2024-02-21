@@ -2,7 +2,7 @@ class Location < ApplicationRecord
   validates :name, :latitude, :longitude, :slug, presence: true
   validates :name, uniqueness: true
 
-  has_many :user_favorites
+  has_many :user_favorites, dependent: :destroy
   has_many :favorited_by_users, through: :user_favorites, source: :user
 
   # wasn't sure if i should leave this in here
