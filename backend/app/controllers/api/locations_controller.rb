@@ -1,5 +1,6 @@
 class Api::LocationsController < ApplicationController
   def index
+    # low level caching using the cache_key which is a hash of the max updated_at
     locations = Rails.cache.fetch(Location.cache_key) do
       Location.all.order(:name)
     end

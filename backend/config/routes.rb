@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resources :locations, only: [:index, :show] do
       resource :weather, only: [:show]
     end
-    resources :user_favorites, only: [:create, :destroy]
+    resources :user_favorites, only: [:index, :create, :destroy]
   end
 end
