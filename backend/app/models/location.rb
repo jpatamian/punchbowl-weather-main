@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  validates :name, :latitude, :longitude, presence: true
+  validates :name, :latitude, :longitude, :slug, presence: true
   validates :name, uniqueness: true
 
   # wasn't sure if i should leave this in here

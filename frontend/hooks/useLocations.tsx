@@ -1,21 +1,41 @@
+import { useState, useEffect } from 'react';
+
 export type Location = {
   slug: string;
   name: string;
   id: number;
 };
 
-const locations: Array<Location> = [
-  { slug: "new_york", name: "New York", id: 1 },
-  { slug: "boston", name: "Boston", id: 2 },
-  { slug: "chicago", name: "Chicago", id: 3 },
-];
+const api = `${process.env.NEXT_PUBLIC_API_BASE}/api/locations`
 
 export const useLocations = () => {
-  // TODO: Fetch this data from the API as a React Hook.
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(api);
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      setIsError(true);
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return {
-    locations,
-    isLoading: false,
-    isError: false,
+    locations: data,
+    isLoading,
+    isError
   };
 };
 

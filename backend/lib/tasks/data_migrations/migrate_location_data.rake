@@ -4,7 +4,7 @@ namespace :data_migrations do
     puts "Starting migration for #{Location::LOCATIONS.count} locations..."
 
     Location::LOCATIONS.each do |key, data|
-      location = Location.new(name: data[0], latitude: data[1], longitude: data[2])
+      location = Location.new(slug: key, name: data[0], latitude: data[1], longitude: data[2])
       if location.save
         puts "Successfully created location #{key}"
       else
