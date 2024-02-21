@@ -8,6 +8,7 @@ class DataMigrationsTest < ActiveSupport::TestCase
   end
 
   test 'loads data correctly' do
-    assert_equal Location.count, Location::LOCATIONS.count
+    assert_equal Location.count, Location::LOCATIONS.count + 1
+    # +1 because of the fixture
   end
 end
