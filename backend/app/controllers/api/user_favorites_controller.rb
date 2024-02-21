@@ -1,8 +1,8 @@
 class Api::UserFavoritesController < ApplicationController
-  before_action :set_user!
+  before_action :set_user!, only: [:index, :create, :destroy]
 
   def index
--    render json: user.user_favorites, status: :ok
+    render json: user.user_favorites, status: :ok
   end
 
   def create
@@ -28,14 +28,14 @@ class Api::UserFavoritesController < ApplicationController
 
     user.favorite_locations.delete(location)
 
-    render json: location, status: :ok
+    head :no_content
   end
 
   private
 
   attr_reader :user
 
-  def set_user
+  def set_user!
     @user = User.first
   end
 

@@ -3,3 +3,9 @@ north_pole:
   name: North Pole
   latitude: 42.3601
   longitude: -71.0589
+
+sleepy_hollow:
+  slug: sleepy_hollow
+  name: Sleepy Hollow
+  latitude: -43.4534
+  longitude: 23.4234
