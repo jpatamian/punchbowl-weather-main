@@ -1,8 +1,8 @@
 class Location < ApplicationRecord
   validates :name, :latitude, :longitude, :slug, presence: true
   validates :name, uniqueness: true
-  has_many :favorites
-  has_many :favorited_by_users, through: :favorites, source: :user
+  has_many :user_favorites
+  has_many :favorited_by_users, through: :user_favorites, source: :user
 
   # wasn't sure if i should leave this in here
   # LAT is first, LON is second
